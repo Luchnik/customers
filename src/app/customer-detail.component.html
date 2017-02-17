@@ -1,0 +1,29 @@
+<h1>
+  <button (click)="left()"><</button>
+    {{customer.name}}
+  <button (click)="right()">></button>
+</h1>
+
+<p><i>
+      {{customer.name}} is at {{customer.address.street}} in 
+      {{customer.address.city}} {{customer.address.state}} in the 
+      {{customer.address.region}} region
+</i></p>
+<!--
+  Different binding variations
+  <input [value]="name" (input)="name = $event.target.value"><br>
+  <input [value]="name" (keyup)="name = $event.target.value"><br>
+  <input [value]="name" (keyup.enter)="name = $event.target.value"
+                        (blur)="name = $event.target.value"><br>
+  <input [ngModel]="customer.name" (ngModelChange)="name=$event"><br>
+-->
+<fieldset>
+  <input [(ngModel)]="customer.name"><br>
+</fieldset>
+
+<!--<button (click)="addressClick()">Add/Show address</button>-->
+<label><input type="checkbox" [(ngModel)]="showAddress"> Show address</label>
+
+<div *ngIf="showAddress">
+  <address-comp [address]="customer.address"></address-comp>
+</div>
